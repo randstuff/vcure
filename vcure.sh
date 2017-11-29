@@ -5,6 +5,7 @@ ArchivedDir="archived"
 Trash="trash" 
 
 declare -a arr=("btceur" "xrpeur" "ltceur" "etheur")
+#declare -a arr=("btceur" "xrpeur") 
 
 shopt -s dotglob
 
@@ -12,12 +13,18 @@ shopt -s dotglob
 
 Collect ()
 {
+	n=0 
 	while [ 42 ]; do 
 		for i in "${arr[@]}" ; do 
 			GetData $i
-			sleep 2
+			sleep 1
+
+			if ! (( n % 2048)); then 
+				Archive
+			fi 
+			((n++)) 
 		done
-		sleep 10
+		sleep 1
 	done
 }
 
