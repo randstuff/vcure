@@ -18,7 +18,6 @@ Collect ()
 		for i in "${arr[@]}" ; do 
 			GetData $i
 			sleep 1
-
 			if ! (( n % 2048)); then 
 				Archive
 			fi 
@@ -83,11 +82,9 @@ ReIndex ()
 		n=0 
 		for f in $(find ./$ArchivedDir -name "*.json" ); do 
 			echo $f 
-
 			mv $f $RootDir/$cVirtMoney/ 
 
 			tmp[$n]=$f
-
 			if ! (( n % 420)); then 
 				CleanUp $tmp
 				sleep 180 
